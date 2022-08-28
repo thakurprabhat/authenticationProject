@@ -1,0 +1,23 @@
+<div class="main-div">
+    <div class="row inner-div">
+        {{!form.get('email')?.valid}}
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <small class="text-danger" *ngIf="!form.get('email')?.valid && form.get('email')?.touched">email address is required</small>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1">
+              <small class="text-danger" *ngIf="!form.get('password')?.valid && form.get('password')?.touched">password should be minimun of 6 character</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-check-label" for="exampleCheck1">{{loginMode ? 'Don`t have account? ' : 'Already have account? '}}</label>
+              <a href="#" (click)="switchMode()">{{loginMode ? 'Create one' : 'Sign in'}}</a>
+            </div>
+            <button type="submit" class="col-md-12 btn btn-primary">{{loginMode ? 'login' : 'signup'}}</button>
+          </form>  
+    </div>
+</div>

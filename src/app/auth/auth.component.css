@@ -1,0 +1,14 @@
+.main-div {
+    height: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-div {
+    width: 500px;
+    height: 1200px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
