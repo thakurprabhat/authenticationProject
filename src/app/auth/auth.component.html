@@ -1,6 +1,8 @@
 <div class="main-div">
     <div class="row inner-div">
-        {{!form.get('email')?.valid}}
+      <div class="alert alert-danger" role="alert" *ngIf="this.errorMessage">
+         An Error Occured {{errorMessage}}
+      </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>

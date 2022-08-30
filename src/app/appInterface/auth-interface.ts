@@ -5,4 +5,5 @@ export interface AuthResponse {
     expiresIn: string // The number of seconds in which the ID token expires.
     localId: string	// The uid of the newly created user.
     registered?: boolean // Whether the email is for an existing account.
+    errorMessage?: any // Whether the email is for an existing account.
 }
