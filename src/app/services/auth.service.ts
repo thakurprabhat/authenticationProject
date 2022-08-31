@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { appConfig } from '../appModels/api-config';
 import { AuthResponse } from '../appInterface/auth-interface';
-import { pipe, Subject,tap } from 'rxjs';
+import { BehaviorSubject, pipe, Subject,tap } from 'rxjs';
 import { User } from '../appModels/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user = new Subject<User>()
+  user = new BehaviorSubject<any>(null)
   constructor(private http:HttpClient) { }
   
   signUp(email:string,password:string) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Observer, of } from 'rxjs';
 import { AuthResponse } from '../appInterface/auth-interface';
 import { AuthService } from '../services/auth.service';
@@ -28,7 +29,7 @@ export class AuthComponent implements OnInit {
     OPERATION_NOT_ALLOWED: "Password sign-in is disabled for this project.",
     TOO_MANY_ATTEMPTS_TRY_LATER: "We have blocked all requests from this device due to unusual activity. Try again later."
   }
-  constructor(private fb:FormBuilder, private authservice:AuthService) { }
+  constructor(private fb:FormBuilder, private authservice:AuthService, public router: Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -53,7 +54,7 @@ export class AuthComponent implements OnInit {
       }
       response.pipe().subscribe({
         next: (res)  => {
-          console.log(res)
+         this.router.navigate(['dashboard']);
         },
         error: (err) => {
           this.errorMessage = this.errorMsgDescription[err.error.error.message as keyof typeof this.errorMsgDescription]
