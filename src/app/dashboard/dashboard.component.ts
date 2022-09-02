@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { exhaustMap, take } from 'rxjs';
+import { delay, exhaustMap, take } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -16,9 +16,13 @@ export class DashboardComponent implements OnInit {
     this._authservice.user.pipe(
       take(1),
       exhaustMap( user => {
-        return this.http.get("https://authangular-110-default-rtdb.firebaseio.com/quiz.json", {
-          params: new HttpParams().set('auth',user.token)
-        });
+        delay(1000);
+        return this.http.get("https://authangular-110-default-rtdb.firebaseio.com/quiz.json"
+        // attached token for single api
+        // , {
+          // params: new HttpParams().set('auth',user.token)
+        // }
+        );
       })
     ).subscribe({
       next: (res) => {
